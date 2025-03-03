@@ -7,20 +7,54 @@ public class Calculator1 {
 
         while(true) {
             // 연산을 수행할 값, 기호 받기
-            System.out.print("첫 번째 값을 입력해주세요: ");
-            int num1 = sc.nextInt();
+            int num1;
+            int num2;
+            char op;
 
-            System.out.print("+, -, *, / 중 1개를 입력해주세요: ");
-            char op = sc.next().charAt(0);
+            while(true){
+            System.out.print("첫 번째 값을 입력해주세요: "); // 첫번째 값 입력 및 검증
+            try {
+                num1 = sc.nextInt();
+            } catch (Exception e){
+                System.out.print("　※ 정수를 입력해주세요!\n");
+                sc.nextLine();
+                continue;
+            }
+            break;
+            }
 
-            System.out.print("두 번째 값을 입력해주세요: ");
-            int num2 = sc.nextInt();
+            while (true) {
+                System.out.print("+, -, *, / 중 1개를 입력해주세요: "); // 부호 입력 및 검증
+            try {
+                op = sc.next().charAt(0);
+                if (op != '+' && op != '-' && op != '*' && op != '/') {
+                    throw new Exception();
+                }
+
+            } catch (Exception e){
+                System.out.print("　※ 사칙연산 부호를 입력해주세요!\n");
+                sc.nextLine();
+                continue;
+            }
+            break;
+            }
 
 
-            // 입력된 값이 양의 정수인지 검증하기
+            while(true){
+            System.out.print("두 번째 값을 입력해주세요: "); // 두번째 값 입력 및 검증
+            try {
+                num2 = sc.nextInt();
+            } catch (Exception e){
+                System.out.print("　※ 정수를 입력해주세요!\n");
+                sc.nextLine();
+                continue;
+            }
+                break;
+            }
+
 
             // switch를 사용하여 연산 실행하기
-            int result = 0; // 연산 값 넣을 볍ㄴ수
+            int result = 0; // 연산 결과 값 넣을 변수
 
             switch (op) {
                 case '+':
@@ -37,14 +71,12 @@ public class Calculator1 {
 
                 case '/':
                     if (num2 == 0) {
-                        System.out.println("나눗셈 연산에서 분모(두번째 값)에 0이 입력될 수 없습니다."); // 분모가 0일경우 예외처리
+                        System.out.println("　※ 나눗셈 연산에서 분모(두번째 값)에 0이 입력될 수 없습니다.\n"); // 분모가 0일경우 예외처리
+                        continue;
                     } else {
                         result = num1 / num2;
                     }
                     break;
-
-                default:
-                    System.out.print("사칙연산 부호가 아닙니다. ");
             }
 
             sc.nextLine();
@@ -60,10 +92,5 @@ public class Calculator1 {
             System.out.println(" ");
         }
 
-
-
-        // 결과 도출
-
-        // 반복문을 상
     }
 }
